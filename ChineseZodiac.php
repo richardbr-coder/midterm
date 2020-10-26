@@ -372,6 +372,24 @@
     
   </form>
 </div>
+
+<!-- tracks the number of times different things are done -->
+<?php
+// Number of correct answers on this attempt
+$myfile = fopen("correct_answers_count.txt", "w") or die("Unable to open file!");
+fwrite($myfile, "This is the total correct answers from this quiz attempt: " . $count);
+fclose($myfile);
+
+
+include 'Comleted-Attempts-Count.php';
+include 'QuestionTotals.php';
+
+
+?>
+
 </body>
+<footer>
+  <p style="color:grey;">Created By Richard Randell</p>
+</footer>
 </html>
 

@@ -44,6 +44,8 @@
   <br><a href="TestScript.php">[Test the Script]</a>
   <a  href="ShowTheSourceCode.php">[View the Source Code]</a>
 </div>
-
 </body>
+<footer>
+  <p style="color:grey;">Created By Richard Randell</p>
+</footer>
 </html>
