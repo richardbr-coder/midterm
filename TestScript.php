@@ -1,31 +1,4 @@
-
-<html>
-<head>
-<title>Chinese Zodiac</title>
-<meta http-equiv="content-type"content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="/index.css">
-<style>
-.error {color: #FF0000;}
-</style>
-</head>
-<body>
-
-<!-- heading div -->
-<div class="header-img">
-    <h1>Midterm Assessment: The Chinese Zodiac</h1>
-
-  </div>
-</br></br></br>
-
-<!-- Home button -->
-<div style="margin-bottom:50px;">
-  <a style="margin-bottom: 50px;" class="neumorphic-btn" href="/index.php">Home</a>
-</div>
-
-
-<!-- Start of quiz -->
-<div class="neumorphic-test"> 
-  <?php
+<?php
 
   //define variables used to store user input
   $nameErr = $emailErr = $q1Err = $q2Err = $q3Err = $q4Err = $q5Err = $q6Err = $q7Err = $q8Err = $q9Err = $q10Err = "";
@@ -372,6 +345,3 @@
     
   </form>
 </div>
-</body>
-</html>
-
