@@ -33,7 +33,7 @@
   </br></br>
   <a class="my-5 btn neumorphic-btn midterm-button" href="ChineseZodiac.php">Midterm Assessment</a>
   </br></br></br></br>
-    
+
   <!-- test and view script button decription -->
   <p>For developmental purposes</p>
   <p>The buttons below are mean't to be used by developers and web administrators.</p>

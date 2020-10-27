@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="/index.css">
 <style>
 .error {color: #FF0000;}
+
+#search {
+    width: 15em; 
+}
 </style>
 </head>
 <body>
@@ -194,14 +198,30 @@
   ?>
 
   <!-- Basic site layout with PHP scripts to prompt user feedback based on their input -->
+  <?php
+    if (isset($_POST['q5']))
+    {
+        $fontFamilyVar = $_POST['q5'];
+    }
+    if (isset($_POST['q7']))
+    {
+        $fontFamilyVar = $_POST['q7'];
+    }
+    if (isset($_POST['q10']))
+    {
+        $fontFamilyVar = $_POST['q10'];
+    }
+  ?>
 
   <h2>What do you know about the Chinese zodiac signs?</h2>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-    Your Name: <input type="name" name="name" placeholder="eg. Richard Randell" required>
+    Your Name: <input type="name" name="name" value="<?php echo $_POST['name']; 
+    ?>" placeholder="eg. Richard Randell" required>
     <span class="error"><?php echo $nameErr ?></span>
     <br><br>
     
-    Your Email: <input type="email" name="email" placeholder="eg. example@gmail.com" required>
+    Your Email: <input type="email" name="email" value="<?php echo $_POST['email']; 
+    ?>" placeholder="eg. example@gmail.com" required>
     <span class="error"><?php echo $emailErr ?></span>
     <br>
     <i><small>Your name and email address are required.</small></i>
@@ -212,49 +232,60 @@
     
     1) The Chinese Zodiac associates a sign with each month.
     <br><br>
-    <input type="radio" name="q1" value="True">True
-    <input type="radio" name="q1" value="False">False
+    <input type="radio" name="q1" value="True"
+    <?php if (isset($_POST['q1']) and $_POST['q1'] == 'True') echo ' checked'; ?>>True
+    <input type="radio" name="q1" value="False"
+    <?php if (isset($_POST['q1']) and $_POST['q1'] == 'False') echo ' checked'; ?>>False
     <br><br>
     <?php echo $q1Err ?>
     <br><br>
     
     2) The Chinese Zodiac signs each have an equivalent constellation, like those of the occidental zodiac.
     <br><br>
-    <input type="radio" name="q2" value="True">True
-    <input type="radio" name="q2" value="False">False
+    <input type="radio" name="q2" value="True"
+    <?php if (isset($_POST['q2']) and $_POST['q2'] == 'True') echo ' checked'; ?>>True
+    <input type="radio" name="q2" value="False"
+    <?php if (isset($_POST['q2']) and $_POST['q2'] == 'False') echo ' checked'; ?>>False
     <br><br>
     <?php echo $q2Err ?>
     <br><br>
     
     3) Which is the only bird that is a sign in the Chinese Zodiac?
     <br><br>
-      Enter your response here:<input type="text" name="q3">
+      Enter your response here:<input type="text" name="q3" value=<?php echo $_POST['q3'];?>>
       <br><br>
       <?php echo $q3Err ?>
     <br><br>
     4) How many signs are in the Chinese Zodiac?
     <br><br>
-      Enter your response here:<input type="text" name="q4">
+      Enter your response here:<input type="text" name="q4" value="<?php echo $_POST['q4'];?>"> 
       <br><br>
       <?php echo $q4Err ?>
     <br><br>
     
     5) The Chinese zodiac traditionally begins with which sign?
+    <?php
+      if (isset($_POST['q5']))
+      {
+          $fontFamilyVar = $_POST['q5'];
+      }
+    ?>
     <br><br>
     <select name="q5">
     <option value="NULL">-- Select the correct answer --</option>
-    <option value="Rat"> Rat </option>
-    <option value="Ox"> Ox </option>
-    <option value="Tiger"> Tiger </option>
-    <option value="Rabbit"> Rabbit </option>
-    <option value="Dragon"> Dragon </option>
-    <option value="Snake"> Snake </option>
-    <option value="Horse"> Horse </option>
-    <option value="Goat"> Goat </option>
-    <option value="Monkey"> Monkey </option>
-    <option value="Rooster"> Rooster </option>
-    <option value="Dog"> Dog </option>
-    <option value="Pig"> Pig </option>
+    <option <?php if($fontFamilyVar=="Baseball Bat") echo 'selected="selected"';?> value="Baseball Bat"> Baseball Bat </option>
+    <option <?php if($fontFamilyVar=="Rat") echo 'selected="selected"';?> value="Rat"> Rat </option>
+    <option <?php if($fontFamilyVar=="Ox") echo 'selected="selected"';?> value="Ox"> Ox </option>
+    <option <?php if($fontFamilyVar=="Tiger") echo 'selected="selected"';?> value="Tiger"> Tiger </option>
+    <option <?php if($fontFamilyVar=="Rabbit") echo 'selected="selected"';?> value="Rabbit"> Rabbit </option>
+    <option <?php if($fontFamilyVar=="Dragon") echo 'selected="selected"';?> value="Dragon"> Dragon </option>
+    <option <?php if($fontFamilyVar=="Snake") echo 'selected="selected"';?> value="Snake"> Snake </option>
+    <option <?php if($fontFamilyVar=="Horse") echo 'selected="selected"';?> value="Horse"> Horse </option>
+    <option <?php if($fontFamilyVar=="Goat") echo 'selected="selected"';?> value="Goat"> Goat </option>
+    <option <?php if($fontFamilyVar=="Monkey") echo 'selected="selected"';?> value="Monkey"> Monkey </option>
+    <option <?php if($fontFamilyVar=="Rooster") echo 'selected="selected"';?> value="Rooster"> Rooster </option>
+    <option <?php if($fontFamilyVar=="Dog") echo 'selected="selected"';?> value="Dog"> Dog </option>
+    <option <?php if($fontFamilyVar=="Pig") echo 'selected="selected"';?> value="Pig"> Pig </option>
     </select>
     <br><br>
     <?php echo $q5Err ?>
@@ -262,29 +293,37 @@
     
     6) Chinese zodiac signs respresent different types of personalities.
     <br><br>
-    <input type="radio" name="q6" value="True">True
-    <input type="radio" name="q6" value="False">False
+    <input type="radio" name="q6" value="True"
+    <?php if (isset($_POST['q6']) and $_POST['q6'] == 'True') echo ' checked'; ?>>True
+    <input type="radio" name="q6" value="False"
+    <?php if (isset($_POST['q6']) and $_POST['q6'] == 'False') echo ' checked'; ?>>False
     <br><br>
     <?php echo $q6Err ?>
     <br><br>
     
     7) Which sign is not part of the Chinese Zodiac?
+    <?php
+      if (isset($_POST['q7']))
+      {
+          $fontFamilyVar = $_POST['q7'];
+      }
+    ?>
     <br><br>
     <select name="q7">
     <option value="NULL">-- Select the correct answer --</option>
-    <option value="Baseball Bat"> Baseball Bat </option>
-    <option value="Rat"> Rat </option>
-    <option value="Ox"> Ox </option>
-    <option value="Tiger"> Tiger </option>
-    <option value="Rabbit"> Rabbit </option>
-    <option value="Dragon"> Dragon </option>
-    <option value="Snake"> Snake </option>
-    <option value="Horse"> Horse </option>
-    <option value="Goat"> Goat </option>
-    <option value="Monkey"> Monkey </option>
-    <option value="Rooster"> Rooster </option>
-    <option value="Dog"> Dog </option>
-    <option value="Pig"> Pig </option>
+    <option <?php if($fontFamilyVar=="Baseball Bat") echo 'selected="selected"';?> value="Baseball Bat"> Baseball Bat </option>
+    <option <?php if($fontFamilyVar=="Rat") echo 'selected="selected"';?> value="Rat"> Rat </option>
+    <option <?php if($fontFamilyVar=="Ox") echo 'selected="selected"';?> value="Ox"> Ox </option>
+    <option <?php if($fontFamilyVar=="Tiger") echo 'selected="selected"';?> value="Tiger"> Tiger </option>
+    <option <?php if($fontFamilyVar=="Rabbit") echo 'selected="selected"';?> value="Rabbit"> Rabbit </option>
+    <option <?php if($fontFamilyVar=="Dragon") echo 'selected="selected"';?> value="Dragon"> Dragon </option>
+    <option <?php if($fontFamilyVar=="Snake") echo 'selected="selected"';?> value="Snake"> Snake </option>
+    <option <?php if($fontFamilyVar=="Horse") echo 'selected="selected"';?> value="Horse"> Horse </option>
+    <option <?php if($fontFamilyVar=="Goat") echo 'selected="selected"';?> value="Goat"> Goat </option>
+    <option <?php if($fontFamilyVar=="Monkey") echo 'selected="selected"';?> value="Monkey"> Monkey </option>
+    <option <?php if($fontFamilyVar=="Rooster") echo 'selected="selected"';?> value="Rooster"> Rooster </option>
+    <option <?php if($fontFamilyVar=="Dog") echo 'selected="selected"';?> value="Dog"> Dog </option>
+    <option <?php if($fontFamilyVar=="Pig") echo 'selected="selected"';?> value="Pig"> Pig </option>
     </select>
     <br><br>
     <?php echo $q7Err ?>
@@ -292,44 +331,52 @@
     
     8)Which is the only reptile that is a sign in the Chinese Zodiac?
     <br><br>
-      Enter your response here:<input type="text" name="q8">
+      Enter your response here:<input type="text" name="q8" value="<?php echo $_POST['q8'];?>">
       <br><br>
       <?php echo $q8Err ?>
     <br><br>
     
     9) Which is the only imaginary animal that is in the Chinese Zodiac?
     <br><br>
-      Enter your response here:<input type="text" name="q9">
+      Enter your response here:<input type="text" name="q9" value="<?php echo $_POST['q9'];?>">
       <br><br>
       <?php echo $q9Err ?>
     <br><br>
     
     10)The Chinese zodiac traditionally ends with what sign?
+    <?php
+      if (isset($_POST['q10']))
+      {
+          $fontFamilyVar = $_POST['q10'];
+      }
+    ?>
     <br><br>
     <select name="q10">
     <option value="NULL">-- Select the correct answer --</option>
-    <option value="Baseball Bat"> Baseball Bat </option>
-    <option value="Rat"> Rat </option>
-    <option value="Ox"> Ox </option>
-    <option value="Tiger"> Tiger </option>
-    <option value="Rabbit"> Rabbit </option>
-    <option value="Dragon"> Dragon </option>
-    <option value="Snake"> Snake </option>
-    <option value="Horse"> Horse </option>
-    <option value="Goat"> Goat </option>
-    <option value="Monkey"> Monkey </option>
-    <option value="Rooster"> Rooster </option>
-    <option value="Dog"> Dog </option>
-    <option value="Pig"> Pig </option>
+    <option <?php if($fontFamilyVar=="Baseball Bat") echo 'selected="selected"';?> value="Baseball Bat"> Baseball Bat </option>
+    <option <?php if($fontFamilyVar=="Rat") echo 'selected="selected"';?> value="Rat"> Rat </option>
+    <option <?php if($fontFamilyVar=="Ox") echo 'selected="selected"';?> value="Ox"> Ox </option>
+    <option <?php if($fontFamilyVar=="Tiger") echo 'selected="selected"';?> value="Tiger"> Tiger </option>
+    <option <?php if($fontFamilyVar=="Rabbit") echo 'selected="selected"';?> value="Rabbit"> Rabbit </option>
+    <option <?php if($fontFamilyVar=="Dragon") echo 'selected="selected"';?> value="Dragon"> Dragon </option>
+    <option <?php if($fontFamilyVar=="Snake") echo 'selected="selected"';?> value="Snake"> Snake </option>
+    <option <?php if($fontFamilyVar=="Horse") echo 'selected="selected"';?> value="Horse"> Horse </option>
+    <option <?php if($fontFamilyVar=="Goat") echo 'selected="selected"';?> value="Goat"> Goat </option>
+    <option <?php if($fontFamilyVar=="Monkey") echo 'selected="selected"';?> value="Monkey"> Monkey </option>
+    <option <?php if($fontFamilyVar=="Rooster") echo 'selected="selected"';?> value="Rooster"> Rooster </option>
+    <option <?php if($fontFamilyVar=="Dog") echo 'selected="selected"';?> value="Dog"> Dog </option>
+    <option <?php if($fontFamilyVar=="Pig") echo 'selected="selected"';?> value="Pig"> Pig </option>
     </select>
     <br><br>
     <?php echo $q10Err ?>
     <br><br>
     
+    <!-- Posting the quizes answers to an array -->
     <?php
-      //Posting the quizes answers to an array
+    if (isset($_POST['submit'])) {
       $Answers = array("", $q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10);
-      echo "You gave the following answers: ";
+      echo "-------------------------------------------------------------------";
+      echo "</br></br>You gave the following answers: ";
       for ($x = 1; $x < 11; $x++) {
         if($Answers[$x]== ""){
           echo "<br>Question $x: None ";
@@ -339,34 +386,110 @@
         }
           
       }
+    }
     ?>
 
     <!-- outputs text based on user score -->
     <h4>
     <?php
-    if($count == 0){
+   
+    // For the program will create the text file for
+    // the number of times a particular grade has been acheived 
+    // I've only completed it the quiz for 0 right and 3 right
+    // so thats the only text files that will be in the folder
+    // as you complete for other grades the file will be created
+    if($count == 0 && isset($_POST['submit'])){
       echo "You missed every question!";
+        // total number of times the quiz is submitted
+        $attempts = 0;
+        $number_of_attempts_file = "number_times_grade_0.txt";
+        // Load up the persisted value from the file and update $views
+        if (file_exists($number_of_attempts_file))
+        {
+            $attempts = (int)file_get_contents($number_of_attempts_file);
+        }
+        $attempts++;
+        file_put_contents($number_of_attempts_file, $attempts);
     } else if ($count == 1 || $count == 2) {
       echo "You really need to study the Chinese Zodiac";
+        // total number of times the quiz is submitted
+        $attempts = 0;
+        $number_of_attempts_file = "number_times_grade_1OR2.txt";
+        // Load up the persisted value from the file and update $views
+        if (file_exists($number_of_attempts_file))
+        {
+            $attempts = (int)file_get_contents($number_of_attempts_file);
+        }
+        $attempts++;
+        file_put_contents($number_of_attempts_file, $attempts);
     } else if ($count == 3 || $count == 4 || $count == 5) {
       echo "You know some things about the Chinese Zodiac";
+        // total number of times the quiz is submitted
+        $attempts = 0;
+        $number_of_attempts_file = "number_times_grade_3OR4OR5.txt";
+        // Load up the persisted value from the file and update $views
+        if (file_exists($number_of_attempts_file))
+        {
+            $attempts = (int)file_get_contents($number_of_attempts_file);
+        }
+        $attempts++;
+        file_put_contents($number_of_attempts_file, $attempts);
     } else if ($count == 6 || $count == 7) {
       echo "You've done some research on the Chinese Zodiac";
+        // total number of times the quiz is submitted
+        $attempts = 0;
+        $number_of_attempts_file = "number_times_grade_6OR7.txt";
+        // Load up the persisted value from the file and update $views
+        if (file_exists($number_of_attempts_file))
+        {
+            $attempts = (int)file_get_contents($number_of_attempts_file);
+        }
+        $attempts++;
+        file_put_contents($number_of_attempts_file, $attempts);
     } else if ($count == 8 || $count == 9) {
       echo "You really know your Chinese Zodiac signs";
+        // total number of times the quiz is submitted
+        $attempts = 0;
+        $number_of_attempts_file = "number_times_grade_8OR9.txt";
+        // Load up the persisted value from the file and update $views
+        if (file_exists($number_of_attempts_file))
+        {
+            $attempts = (int)file_get_contents($number_of_attempts_file);
+        }
+        $attempts++;
+        file_put_contents($number_of_attempts_file, $attempts);
     } else if ($count == 10) {
       echo "You are a Chinese Zodiac Expert";
+        // total number of times the quiz is submitted
+        $attempts = 0;
+        $number_of_attempts_file = "number_times_grade_10.txt";
+        // Load up the persisted value from the file and update $views
+        if (file_exists($number_of_attempts_file))
+        {
+            $attempts = (int)file_get_contents($number_of_attempts_file);
+        }
+        $attempts++;
+        file_put_contents($number_of_attempts_file, $attempts);
     }
     ?>
     </h4>
 
     <!-- outputs users score -->
-    <h3>You answered <?php echo $count ?> our of 10 questions correctly, for a score of <?php echo $count * 10 ?>%</h3>
+    <?php 
+      if (isset($_POST['submit'])) {
+      echo "You Answered " .  
+      $count . 
+      " out of 10 questions correct for a score of " .  
+      $count * 10 . 
+      "%</br></br>";
+    }
+    echo "-------------------------------------------------------------------</br></br></br>";
+    ?>
     
     
     <!-- submit and reset buttons -->
-    <input type="reset" name="reset" value="Clear Quiz" onclick="this.form.reset();" />
-    <input type="submit" name="submit" value="Grade Quiz" />
+    <input id="search" type="reset" name="reset" value="Clear Quiz" onclick="this.form.reset();" />
+    <input id="search" type="submit" name="submit" value="Grade Quiz" />
     
     <br>
     
@@ -389,7 +512,41 @@
     if (isset($_POST['submit'])) {
       $to_email= $_POST["email"];
       $subject = 'Midterm Assessment';
-      $message = 'Hi '. $_POST["name"] .'Your Results from the quiz are:';
+      $message = 
+      "</br>Hi ". $_POST["name"] .
+      "! Your score on the test was " . ($count * 10) . "%" .
+      "</br>The Results from the quiz are: </br>" .
+      // the visitors answers
+      '</br>The correct answers you gave are: </br>' .
+      "Question 1:". $q1 ."\n</br>" .
+      "Question 2:". $q2 ."\n</br>" .
+      "Question 3:". $q3 ."\n</br>" .
+      "Question 4:". $q4 ."\n</br>" .
+      "Question 5:". $q5 ."\n</br>" .
+      "Question 6:". $q6 ."\n</br>" .
+      "Question 7:". $q7 ."\n</br>" .
+      "Question 8:". $q8 ."\n</br>" .
+      "Question 9:". $q9 ."\n</br>" .
+      "Question 10:". $q10 ."\n</br>" .
+      //the correct answers
+      '</br>The correct answers are: </br>' .
+      "Question 1: False \n</br>" .
+      "Question 2: Flase \n</br>" .
+      "Question 3: Rooster \n</br>" .
+      "Question 4: 12 \n</br>" .
+      "Question 5: Rat \n</br>" .
+      "Question 6: True \n</br>" .
+      "Question 7: Baseball Bat \n</br>" .
+      "Question 8: Snake \n</br>" .
+      "Question 9: Dragon \n</br>" .
+      "Question 10: Pig \n</br>"
+      ;
+
+      // As I can not send a real email over the local server
+      // I used this to see what my email would look like once sent
+      // remove the comment slashes to view the email contents below the clear and submit buttons
+      // echo $message;
+
       $headers = 'From: richardrandell2@outlook.com';
       //check if the email address is invalid $secure_check
       $secure_check = sanitize_my_email($to_email);
@@ -412,8 +569,35 @@
       Sorry, there was a problem sending your message.
       <?php } 
     }
-    ?>
+  ?>
+   <h4 style="text-decoration: underline;"></br></br></br>Midterm Assessment statistics</h4>
+  <?php
+  // get the contents, and echo it out.
+  echo "Number of time the quiz has been completed: " . 
+  file_get_contents( "number_of_attempts.txt" ) . "</br></br>"; 
 
+  echo "Number of time each question has been answered correctly: </br>" . 
+  "Question 1: " . file_get_contents( "question_one_total_times_answered_correctly.txt" ) . "</br>" . 
+  "Question 2: " . file_get_contents( "question_two_total_times_answered_correctly.txt" ) . "</br>" . 
+  "Question 3: " . file_get_contents( "question_three_total_times_answered_correctly.txt" ) . "</br>" . 
+  "Question 4: " . file_get_contents( "question_four_total_times_answered_correctly.txt" ) . "</br>" . 
+  "Question 5: " . file_get_contents( "question_five_total_times_answered_correctly.txt" ) . "</br>" . 
+  "Question 6: " . file_get_contents( "question_six_total_times_answered_correctly.txt" ) . "</br>" . 
+  "Question 7: " . file_get_contents( "question_seven_total_times_answered_correctly.txt" ) . "</br>" . 
+  "Question 8: " . file_get_contents( "question_eight_total_times_answered_correctly.txt" ) . "</br>" . 
+  "Question 9: " . file_get_contents( "question_nine_total_times_answered_correctly.txt" ) . "</br>" . 
+  "Question 10: " . file_get_contents( "question_ten_total_times_answered_correctly.txt" ) . "</br>"; 
+  
+  echo "</br>Number of times a particular grade has been acheived: </br>";
+  echo "0%: " . file_get_contents( "number_times_grade_0.txt" ) . "</br>"; 
+  echo "10% or 20%: " . file_get_contents( "number_times_grade_1OR2.txt" ) . "</br>"; 
+  echo "30%, 40% or 50%: " . file_get_contents( "number_times_grade_3OR4OR5.txt" ) . "</br>"; 
+  echo "60% or 70%: " . file_get_contents( "number_times_grade_6OR7.txt" ) . "</br>"; 
+  echo "80% or 90%: " . file_get_contents( "number_times_grade_8OR9.txt" ) . "</br>"; 
+  echo "100%: " . file_get_contents( "number_times_grade_10.txt" ) . "</br>"; 
+
+  ?>
+  </br></br>
   </form>
 </div>
 
@@ -421,7 +605,7 @@
 <?php
 // Number of correct answers on this attempt
 $myfile = fopen("correct_answers_count.txt", "w") or die("Unable to open file!");
-fwrite($myfile, "This is the total correct answers from this quiz attempt: " . $count);
+fwrite($myfile, "This is the total correct answers from the last quiz attempt: " . $count);
 fclose($myfile);
 
 
