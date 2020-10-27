@@ -197,7 +197,7 @@
 
   <h2>What do you know about the Chinese zodiac signs?</h2>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-    Your Name: <input type="name" name="name" required>
+    Your Name: <input type="name" name="name" placeholder="eg. Richard Randell" required>
     <span class="error"><?php echo $nameErr ?></span>
     <br><br>
     
@@ -368,8 +368,52 @@
     <input type="reset" name="reset" value="Clear Quiz" onclick="this.form.reset();" />
     <input type="submit" name="submit" value="Grade Quiz" />
     
-    <br><br><br><br><br><br><br>
+    <br>
     
+    <!-- E-mailing name, e-mail, question #, response and correct answers -->
+    <?php
+    error_reporting(-1);
+    ini_set('display_errors', 'On');
+    set_error_handler("var_dump");
+
+    // sending secure e-mail
+    function sanitize_my_email($field) {
+      $field = filter_var($field, FILTER_SANITIZE_EMAIL);
+      if (filter_var($field, FILTER_VALIDATE_EMAIL)) {
+          return true;
+      } else {
+          return false;
+      }
+    }
+    // sending the email
+    if (isset($_POST['submit'])) {
+      $to_email= $_POST["email"];
+      $subject = 'Midterm Assessment';
+      $message = 'Hi '. $_POST["name"] .'Your Results from the quiz are:';
+      $headers = 'From: richardrandell2@outlook.com';
+      //check if the email address is invalid $secure_check
+      $secure_check = sanitize_my_email($to_email);
+      if ($secure_check == false) {
+        echo "Invalid input";
+      } else { //send email 
+        $success = mail($to_email, $subject, $message, $headers);
+        
+      }
+    }
+    ?>
+    <!-- Comfirming if the message was sending or displaying an error -->
+    <?php 
+      if (isset($_POST['submit'])) {
+      if(isset($success) && $success){ ?>
+      <h1>Thank-You!</h1>
+      Your Quiz results have been e-mailed to you!
+      <?php } else { ?>
+      <h1>Oops!</h1>
+      Sorry, there was a problem sending your message.
+      <?php } 
+    }
+    ?>
+
   </form>
 </div>
 
@@ -383,8 +427,6 @@ fclose($myfile);
 
 include 'Comleted-Attempts-Count.php';
 include 'QuestionTotals.php';
-
-
 ?>
 
 </body>
